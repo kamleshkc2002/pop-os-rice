@@ -9,7 +9,8 @@ rollback because Timeshift commonly excludes home directories.
 - Pop!_OS with a COSMIC Wayland session
 - Bash
 - Git
-- `coreutils`, `findutils`, `tar`, `gzip`, and `dpkg-query`
+- `coreutils`, `findutils`, `tar`, `gzip`, `dconf`, `gsettings`, and
+  `dpkg-query`
 - `sudo` access
 - Timeshift for system-level rollback
 
@@ -43,7 +44,8 @@ Create the separate user-configuration checkpoint:
 The backup command captures available COSMIC, GTK, font, icon, theme, and
 wallpaper paths under the current user's home directory. It writes a
 root-owned archive and manifests under `/var/backups/pop-os-rice/`, then
-verifies the SHA-256 checksum, gzip stream, and tar index.
+verifies the SHA-256 checksum, gzip stream, and tar index. It also captures
+the legacy interface dconf state used for icon-theme selection.
 
 ## 3. Preview the profile
 
@@ -57,7 +59,7 @@ The dry run does not create a backup or modify COSMIC settings.
 
 ## 4. Apply automated settings
 
-Apply the panel, dock, and COSMIC Terminal settings:
+Apply the panel, dock, Pop icon theme, and COSMIC Terminal settings:
 
 ```bash
 ./scripts/apply.sh --apply --category all
@@ -72,19 +74,24 @@ Categories can be applied independently:
 ```bash
 ./scripts/apply.sh --apply --category panel
 ./scripts/apply.sh --apply --category terminal
+./scripts/apply.sh --apply --category icons
+./scripts/apply.sh --apply --category theme
 ```
 
-Log out and back in if panel or dock changes are not visible immediately.
+The apply script asks `cosmic-session` to restart the supervised panel after
+panel changes. Log out and back in if the panel is not restarted.
 
-## 5. Import the desktop palette
+## 5. Apply the desktop palette
 
-COSMIC does not currently expose a supported non-interactive theme importer.
-Use the supported interface:
+The `all` category imports the Tokyo Night palette through COSMIC Settings.
+It can also be applied independently:
 
-1. Open COSMIC Settings.
-2. Go to **Desktop → Appearance**.
-3. Select **Import**.
-4. Choose `profiles/cosmic/theme/tokyo-night.ron`.
+```bash
+./scripts/apply.sh --apply --category theme
+```
+
+This runs the supported `cosmic-settings appearance import` command rather
+than writing derived internal theme files.
 
 ## 6. Import the terminal palette
 

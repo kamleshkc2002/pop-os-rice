@@ -12,11 +12,62 @@ category="all"
 
 usage() {
   cat <<'EOF'
-Usage: apply.sh (--dry-run | --apply) [--category panel|terminal|all]
+Usage: apply.sh (--dry-run | --apply) [--category theme|panel|terminal|icons|all]
 
 Preview or apply stable COSMIC configuration files. A verified user-config
 backup is created before every real apply operation.
 EOF
+}
+apply_icons() {
+  local icon_theme_file="${ROOT}/profiles/cosmic/icons/icon-theme"
+  local icon_theme
+  require_command gsettings
+
+  [[ -f "$icon_theme_file" ]] || die "icon profile missing: $icon_theme_file"
+  icon_theme="$(<"$icon_theme_file")"
+  [[ -d "/usr/share/icons/${icon_theme}" ||
+     -d "${HOME}/.local/share/icons/${icon_theme}" ||
+     -d "${HOME}/.icons/${icon_theme}" ]] \
+    || die "icon theme is not installed: $icon_theme"
+
+  if [[ "$mode" == "dry-run" ]]; then
+    printf 'would set org.gnome.desktop.interface icon-theme -> %s\n' \
+      "$icon_theme"
+  else
+    gsettings set org.gnome.desktop.interface icon-theme "$icon_theme"
+  fi
+}
+apply_theme() {
+  local theme_file="${ROOT}/profiles/cosmic/theme/tokyo-night.ron"
+  require_command cosmic-settings
+
+  [[ -f "$theme_file" ]] || die "COSMIC theme profile missing: $theme_file"
+  if [[ "$mode" == "dry-run" ]]; then
+    printf 'would import COSMIC desktop theme -> %s\n' "$theme_file"
+  else
+    cosmic-settings appearance import "$theme_file"
+  fi
+}
+
+restart_panel() {
+  local old_pid new_pid attempt
+
+  old_pid="$(pgrep -xo cosmic-panel || true)"
+  [[ -n "$old_pid" ]] || {
+    note "COSMIC panel is not running; log out and back in to load the profile."
+    return
+  }
+
+  kill -TERM "$old_pid"
+  for attempt in {1..30}; do
+    sleep 0.2
+    new_pid="$(pgrep -xo cosmic-panel || true)"
+    if [[ -n "$new_pid" && "$new_pid" != "$old_pid" ]]; then
+      note "COSMIC panel restarted: ${old_pid} -> ${new_pid}"
+      return
+    fi
+  done
+  note "COSMIC panel did not restart automatically; log out and back in."
 }
 
 while (($#)); do
@@ -46,12 +97,14 @@ done
 
 [[ "$mode" == "dry-run" || "$mode" == "apply" ]] \
   || die "choose exactly one of --dry-run or --apply"
-[[ "$category" == "panel" || "$category" == "terminal" ||
+[[ "$category" == "theme" || "$category" == "panel" ||
+   "$category" == "terminal" ||
+   "$category" == "icons" ||
    "$category" == "all" ]] || die "invalid category: $category"
 
 declare -a categories=()
 if [[ "$category" == "all" ]]; then
-  categories=(panel terminal)
+  categories=(theme panel terminal icons)
 else
   categories=("$category")
 fi
@@ -83,12 +136,26 @@ if [[ "$mode" == "apply" ]]; then
 fi
 
 for current in "${categories[@]}"; do
-  copy_profile "$current"
+  case "$current" in
+    theme)
+      apply_theme
+      ;;
+    icons)
+      apply_icons
+      ;;
+    *)
+      copy_profile "$current"
+      ;;
+  esac
 done
 
 if [[ "$mode" == "dry-run" ]]; then
   note "Dry run complete; no settings changed."
 else
+  if [[ " ${categories[*]} " == *" panel "* ||
+        " ${categories[*]} " == *" theme "* ]]; then
+    restart_panel
+  fi
   note "Profile applied. Log out and back in if COSMIC does not reload it."
-  note "Theme imports remain manual; see README.md."
+  note "The COSMIC Terminal color-scheme import remains manual; see README.md."
 fi

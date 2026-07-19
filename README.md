@@ -9,9 +9,11 @@ The first COSMIC profile is complete and validated:
 
 - Backup, restore, dry-run, and atomic apply tooling is available.
 - Panel, dock, and COSMIC Terminal settings are reproducible.
-- Tokyo Night desktop and terminal palettes are ready for supported UI import.
+- The preinstalled Pop icon theme is selected reproducibly.
+- The Tokyo Night desktop palette is imported through COSMIC Settings.
+- The terminal palette is ready for supported UI import.
 - Warp is intentionally outside the profile.
-- Unlicensed wallpaper, font, icon, and cursor assets are intentionally absent.
+- Unlicensed wallpaper, font, and cursor assets are intentionally absent.
 
 See [`docs/SETUP.md`](docs/SETUP.md) for the complete installation,
 verification, and rollback workflow.
@@ -20,6 +22,7 @@ verification, and rollback workflow.
 
 - `scripts/`: backup, restore, and profile application commands
 - `profiles/cosmic/panel/`: automated panel and dock settings
+- `profiles/cosmic/icons/`: automated legacy application icon selection
 - `profiles/cosmic/terminal/`: automated terminal settings and palette import
 - `profiles/cosmic/theme/`: COSMIC desktop palette import
 - `assets/`: licensed visual assets and their provenance
@@ -46,13 +49,13 @@ The automated profile changes only stable, file-backed COSMIC settings:
 - A compact, floating top panel
 - A floating left-side dock
 - Panel and dock translucency, spacing, and rounded corners
+- The preinstalled Pop icon theme for legacy applications
 - COSMIC Terminal dark mode, font size, opacity, and header behavior
 
 It does not modify Warp.
 
-COSMIC does not currently expose a supported command-line theme importer.
-The desktop and terminal Tokyo Night palettes are therefore supplied as RON
-files for import through their supported interfaces:
+COSMIC Settings provides a supported command-line importer for the desktop
+palette. COSMIC Terminal still requires its supported graphical importer:
 
 - Desktop: `profiles/cosmic/theme/tokyo-night.ron`
 - Terminal: `profiles/cosmic/terminal/tokyo-night.ron`
@@ -70,19 +73,26 @@ files for import through their supported interfaces:
 ```
 
 The apply script creates and verifies a new user-configuration archive before
-copying any settings. Run panel and terminal categories separately if desired:
+copying any settings. Run categories separately if desired:
 
 ```bash
 ./scripts/apply.sh --apply --category panel
 ./scripts/apply.sh --apply --category terminal
+./scripts/apply.sh --apply --category icons
+./scripts/apply.sh --apply --category theme
 ```
 
-Log out and back in if panel changes are not picked up immediately.
+The apply script restarts `cosmic-panel` after panel changes. Log out and back
+in if the session supervisor does not restart it.
 
-## Import the desktop palette
+## Apply the desktop palette
 
-Open COSMIC Settings, go to **Desktop → Appearance**, choose **Import**, and
-select `profiles/cosmic/theme/tokyo-night.ron`.
+The `all` category imports the palette automatically. Apply it independently
+with:
+
+```bash
+./scripts/apply.sh --apply --category theme
+```
 
 ## Import the terminal palette
 

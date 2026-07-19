@@ -78,6 +78,10 @@ dpkg-query -W -f='${binary:Package}\t${Version}\n' \
 printf 'created_at=%s\nhost=%s\nuser=%s\nlabel=%s\n' \
   "$(date --iso-8601=seconds)" "$(hostname)" "$USER" "$label" \
   >"${staging}/metadata.txt"
+if command -v dconf >/dev/null 2>&1; then
+  dconf dump /org/gnome/desktop/interface/ \
+    >"${staging}/gnome-interface.dconf"
+fi
 
 archive="${staging}/user-appearance-config.tar.gz"
 tar -C "$HOME" -czf "$archive" "${included[@]}"
@@ -85,6 +89,9 @@ gzip -t "$archive"
 (
   cd "$staging"
   sha256sum user-appearance-config.tar.gz >SHA256SUMS
+  if [[ -f gnome-interface.dconf ]]; then
+    sha256sum gnome-interface.dconf >>SHA256SUMS
+  fi
 )
 
 sudo install -d -m 0700 "$destination"
@@ -95,6 +102,9 @@ sudo install -m 0600 \
   "${staging}/metadata.txt" \
   "${staging}/SHA256SUMS" \
   "${destination}/"
+if [[ -f "${staging}/gnome-interface.dconf" ]]; then
+  sudo install -m 0600 "${staging}/gnome-interface.dconf" "${destination}/"
+fi
 
 sudo env --chdir="$destination" sha256sum --check SHA256SUMS
 sudo gzip -t "${destination}/user-appearance-config.tar.gz"
