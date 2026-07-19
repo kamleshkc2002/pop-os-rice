@@ -80,6 +80,9 @@ sudo gzip -t "$archive"
 if [[ "$mode" == "dry-run" ]]; then
   note "Verified archive. Paths that would be restored:"
   sudo tar -tzf "$archive"
+  if sudo test -f "${archive_dir}/gnome-interface.dconf"; then
+    note "GNOME/COSMIC legacy interface settings would also be restored."
+  fi
   exit 0
 fi
 
@@ -90,4 +93,9 @@ sudo chown -R "${USER}:$(id -gn)" \
   "${HOME}/.config/cosmic" \
   "${HOME}/.config/gtk-3.0" \
   "${HOME}/.config/gtk-4.0"
+if sudo test -f "${archive_dir}/gnome-interface.dconf"; then
+  require_command dconf
+  sudo cat "${archive_dir}/gnome-interface.dconf" \
+    | dconf load /org/gnome/desktop/interface/
+fi
 note "Restore complete. Log out and back in to reload COSMIC settings."
