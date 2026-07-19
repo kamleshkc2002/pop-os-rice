@@ -22,8 +22,6 @@ git clone https://github.com/kamleshkc2002/pop-os-rice.git
 cd pop-os-rice
 ```
 
-The repository is private, so GitHub authentication is required.
-
 ## 2. Create rollback checkpoints
 
 Create and verify a labeled Timeshift snapshot before changing system or
