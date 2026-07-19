@@ -3,6 +3,28 @@
 A backup-first, reproducible COSMIC desktop configuration inspired by a
 Tokyo Night GNOME setup.
 
+## Project status
+
+The first COSMIC profile is complete and validated:
+
+- Backup, restore, dry-run, and atomic apply tooling is available.
+- Panel, dock, and COSMIC Terminal settings are reproducible.
+- Tokyo Night desktop and terminal palettes are ready for supported UI import.
+- Warp is intentionally outside the profile.
+- Unlicensed wallpaper, font, icon, and cursor assets are intentionally absent.
+
+See [`docs/SETUP.md`](docs/SETUP.md) for the complete installation,
+verification, and rollback workflow.
+
+## Repository layout
+
+- `scripts/`: backup, restore, and profile application commands
+- `profiles/cosmic/panel/`: automated panel and dock settings
+- `profiles/cosmic/terminal/`: automated terminal settings and palette import
+- `profiles/cosmic/theme/`: COSMIC desktop palette import
+- `assets/`: licensed visual assets and their provenance
+- `state/`: non-secret checkpoint metadata
+
 ## Safety checkpoint
 
 The initial checkpoint was verified before this repository was created:
@@ -114,3 +136,7 @@ theme. COSMIC cannot reproduce its separated top-panel islands exactly. This
 profile translates the visual direction using supported COSMIC features
 instead of installing incompatible GNOME extensions or writing derived
 internal theme files.
+
+The checkpoint identifiers above document the original development machine.
+New installations must create their own Timeshift snapshot and user
+configuration archive before applying the profile.
