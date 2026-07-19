@@ -1,0 +1,6 @@
+state/*.log
+state/*.tar.gz
+state/*.sha256
+state/backups/
+*.swp
+*~

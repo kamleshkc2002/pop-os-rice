@@ -1,0 +1,5 @@
+Timeshift snapshot: 2026-07-18_22-05-54
+Timeshift description: Before pop-os-rice COSMIC customization
+User archive: /var/backups/pop-os-rice/20260718-220721
+SHA-256: 575758ba0433a15d515abfcf4c100db05841d16c2d3e697d7d5cdbc091fdbdfc
+Verified: archive checksum, gzip stream, and tar listing
