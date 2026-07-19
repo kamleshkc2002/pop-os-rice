@@ -12,7 +12,7 @@ category="all"
 
 usage() {
   cat <<'EOF'
-Usage: apply.sh (--dry-run | --apply) [--category panel|terminal|icons|all]
+Usage: apply.sh (--dry-run | --apply) [--category theme|panel|terminal|icons|all]
 
 Preview or apply stable COSMIC configuration files. A verified user-config
 backup is created before every real apply operation.
@@ -35,6 +35,17 @@ apply_icons() {
       "$icon_theme"
   else
     gsettings set org.gnome.desktop.interface icon-theme "$icon_theme"
+  fi
+}
+apply_theme() {
+  local theme_file="${ROOT}/profiles/cosmic/theme/tokyo-night.ron"
+  require_command cosmic-settings
+
+  [[ -f "$theme_file" ]] || die "COSMIC theme profile missing: $theme_file"
+  if [[ "$mode" == "dry-run" ]]; then
+    printf 'would import COSMIC desktop theme -> %s\n' "$theme_file"
+  else
+    cosmic-settings appearance import "$theme_file"
   fi
 }
 
@@ -86,13 +97,14 @@ done
 
 [[ "$mode" == "dry-run" || "$mode" == "apply" ]] \
   || die "choose exactly one of --dry-run or --apply"
-[[ "$category" == "panel" || "$category" == "terminal" ||
+[[ "$category" == "theme" || "$category" == "panel" ||
+   "$category" == "terminal" ||
    "$category" == "icons" ||
    "$category" == "all" ]] || die "invalid category: $category"
 
 declare -a categories=()
 if [[ "$category" == "all" ]]; then
-  categories=(panel terminal icons)
+  categories=(theme panel terminal icons)
 else
   categories=("$category")
 fi
@@ -124,19 +136,26 @@ if [[ "$mode" == "apply" ]]; then
 fi
 
 for current in "${categories[@]}"; do
-  if [[ "$current" == "icons" ]]; then
-    apply_icons
-  else
-    copy_profile "$current"
-  fi
+  case "$current" in
+    theme)
+      apply_theme
+      ;;
+    icons)
+      apply_icons
+      ;;
+    *)
+      copy_profile "$current"
+      ;;
+  esac
 done
 
 if [[ "$mode" == "dry-run" ]]; then
   note "Dry run complete; no settings changed."
 else
-  if [[ " ${categories[*]} " == *" panel "* ]]; then
+  if [[ " ${categories[*]} " == *" panel "* ||
+        " ${categories[*]} " == *" theme "* ]]; then
     restart_panel
   fi
   note "Profile applied. Log out and back in if COSMIC does not reload it."
-  note "Theme imports remain manual; see README.md."
+  note "The COSMIC Terminal color-scheme import remains manual; see README.md."
 fi

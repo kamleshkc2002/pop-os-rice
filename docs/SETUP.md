@@ -75,20 +75,23 @@ Categories can be applied independently:
 ./scripts/apply.sh --apply --category panel
 ./scripts/apply.sh --apply --category terminal
 ./scripts/apply.sh --apply --category icons
+./scripts/apply.sh --apply --category theme
 ```
 
 The apply script asks `cosmic-session` to restart the supervised panel after
 panel changes. Log out and back in if the panel is not restarted.
 
-## 5. Import the desktop palette
+## 5. Apply the desktop palette
 
-COSMIC does not currently expose a supported non-interactive theme importer.
-Use the supported interface:
+The `all` category imports the Tokyo Night palette through COSMIC Settings.
+It can also be applied independently:
 
-1. Open COSMIC Settings.
-2. Go to **Desktop → Appearance**.
-3. Select **Import**.
-4. Choose `profiles/cosmic/theme/tokyo-night.ron`.
+```bash
+./scripts/apply.sh --apply --category theme
+```
+
+This runs the supported `cosmic-settings appearance import` command rather
+than writing derived internal theme files.
 
 ## 6. Import the terminal palette
 
