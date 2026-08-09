@@ -38,7 +38,7 @@ apply_icons() {
   fi
 }
 apply_theme() {
-  local theme_file="${ROOT}/profiles/cosmic/theme/pdf-reference.ron"
+  local theme_file="${ROOT}/profiles/cosmic/theme/sakura-night.ron"
   require_command cosmic-settings
 
   [[ -f "$theme_file" ]] || die "COSMIC theme profile missing: $theme_file"

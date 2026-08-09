@@ -1,7 +1,7 @@
 # Pop!_OS COSMIC Rice
 
 A backup-first, reproducible COSMIC desktop configuration inspired by a
-PDF reference GNOME setup.
+Sakura Night GNOME setup.
 
 ## Project status
 
@@ -10,7 +10,7 @@ The first COSMIC profile is complete and validated:
 - Backup, restore, dry-run, and atomic apply tooling is available.
 - Panel, dock, and COSMIC Terminal settings are reproducible.
 - The preinstalled Pop icon theme is selected reproducibly.
-- The PDF reference desktop palette is imported through COSMIC Settings.
+- The Sakura Night desktop palette is imported through COSMIC Settings.
 - The terminal palette is ready for supported UI import.
 - Warp is intentionally outside the profile.
 - Unlicensed wallpaper, font, and cursor assets are intentionally absent.
@@ -57,8 +57,8 @@ It does not modify Warp.
 COSMIC Settings provides a supported command-line importer for the desktop
 palette. COSMIC Terminal still requires its supported graphical importer:
 
-- Desktop: `profiles/cosmic/theme/pdf-reference.ron`
-- Terminal: `profiles/cosmic/terminal/pdf-reference.ron`
+- Desktop: `profiles/cosmic/theme/sakura-night.ron`
+- Terminal: `profiles/cosmic/terminal/sakura-night.ron`
 
 ## Preview automated changes
 
@@ -97,7 +97,7 @@ with:
 ## Import the terminal palette
 
 Open COSMIC Terminal, go to **View → Color schemes**, choose **Import**, and
-select `profiles/cosmic/terminal/pdf-reference.ron`. Then select **PDF Reference**
+select `profiles/cosmic/terminal/sakura-night.ron`. Then select **Sakura Night**
 as the dark color scheme.
 
 ## Backups
