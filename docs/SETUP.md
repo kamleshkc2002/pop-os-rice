@@ -83,7 +83,7 @@ panel changes. Log out and back in if the panel is not restarted.
 
 ## 5. Apply the desktop palette
 
-The `all` category imports the Tokyo Night palette through COSMIC Settings.
+The `all` category imports the PDF reference palette through COSMIC Settings.
 It can also be applied independently:
 
 ```bash
@@ -98,8 +98,8 @@ than writing derived internal theme files.
 1. Open COSMIC Terminal.
 2. Go to **View → Color schemes**.
 3. Select **Import**.
-4. Choose `profiles/cosmic/terminal/tokyo-night.ron`.
-5. Select **Tokyo Night Moon** as the dark color scheme.
+4. Choose `profiles/cosmic/terminal/pdf-reference.ron`.
+5. Select **PDF Reference** as the dark color scheme.
 
 The profile does not modify Warp.
 
