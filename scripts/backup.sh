@@ -57,6 +57,7 @@ declare -a candidates=(
   ".config/gtk-3.0"
   ".config/gtk-4.0"
   ".config/fontconfig"
+  ".config/neofetch"
   ".local/share/themes"
   ".local/share/icons"
   ".local/share/fonts"

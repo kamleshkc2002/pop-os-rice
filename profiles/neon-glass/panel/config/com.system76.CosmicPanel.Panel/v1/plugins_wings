@@ -1,0 +1,9 @@
+Some(([
+    "com.system76.CosmicAppletPower",
+    "com.github.pewmoe.cosmic-ext-ASCII-dot-battery",
+], [
+    "com.system76.CosmicAppletStatusArea",
+    "com.system76.CosmicAppletAudio",
+    "com.system76.CosmicAppletNotifications",
+    "com.system76.CosmicAppletNetwork",
+]))
