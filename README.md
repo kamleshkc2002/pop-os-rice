@@ -28,22 +28,15 @@ verification, and rollback workflow.
 - `profiles/<name>/icons/`: icon theme selection
 - `profiles/<name>/fetch/`: neofetch layout
 - `assets/`: licensed visual assets and their provenance
-- `state/`: non-secret checkpoint metadata
 
 A profile provides only the categories it needs.
 
-## Safety checkpoint
+## Safety checkpoints
 
-The initial checkpoint was verified before this repository was created:
-
-- Timeshift snapshot: `2026-07-18_22-05-54`
-- User configuration archive:
-  `/var/backups/pop-os-rice/20260718-220721`
-- Archive SHA-256:
-  `575758ba0433a15d515abfcf4c100db05841d16c2d3e697d7d5cdbc091fdbdfc`
-
-Timeshift excludes `/home/kamlesh/**`, so restoring only the Timeshift
-snapshot will not restore COSMIC settings. Use `scripts/restore.sh` for the
+Create a Timeshift snapshot and a user-configuration archive before applying
+a profile; see [`docs/SETUP.md`](docs/SETUP.md#2-create-rollback-checkpoints).
+Timeshift commonly excludes home directories, so restoring only a Timeshift
+snapshot may not restore COSMIC settings. Use `scripts/restore.sh` for the
 separate user configuration archive.
 
 ## What `sakura-night` changes
@@ -137,7 +130,7 @@ Inspect a checkpoint without restoring it:
 
 ```bash
 ./scripts/restore.sh \
-  --archive /var/backups/pop-os-rice/20260718-220721 \
+  --archive /var/backups/pop-os-rice/<checkpoint> \
   --dry-run
 ```
 
@@ -145,7 +138,7 @@ Restore a checkpoint explicitly:
 
 ```bash
 ./scripts/restore.sh \
-  --archive /var/backups/pop-os-rice/20260718-220721 \
+  --archive /var/backups/pop-os-rice/<checkpoint> \
   --restore
 ```
 
@@ -153,7 +146,7 @@ The restore script takes another checkpoint before extracting the selected
 archive. System-level restoration is intentionally left to Timeshift:
 
 ```bash
-sudo timeshift --restore --snapshot 2026-07-18_22-05-54
+sudo timeshift --restore --snapshot <snapshot-name>
 ```
 
 Review Timeshift's target and bootloader prompts carefully before restoring.
@@ -170,7 +163,3 @@ derived internal theme files.
 which appears to be a Spotify window rather than a COSMIC setting. A few
 settings stay manual because they are hardware-specific or live outside COSMIC
 configuration; see [`docs/SETUP.md`](docs/SETUP.md#neon-glass-manual-steps).
-
-The checkpoint identifiers above document the original development machine.
-New installations must create their own Timeshift snapshot and user
-configuration archive before applying a profile.
