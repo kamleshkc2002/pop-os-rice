@@ -1,0 +1,5 @@
+(
+    chart_visible: false,
+    value_visible: true,
+    label_visible: true,
+)
