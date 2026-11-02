@@ -105,11 +105,12 @@ Create the separate user-configuration checkpoint:
 ./scripts/backup.sh --label initial-baseline
 ```
 
-The backup command captures available COSMIC, GTK, font, icon, theme,
-neofetch, and wallpaper paths under the current user's home directory. It
-writes a root-owned archive and manifests under `/var/backups/pop-os-rice/`,
-then verifies the SHA-256 checksum, gzip stream, and tar index. It also
-captures the legacy interface dconf state used for icon-theme selection.
+The backup command captures available COSMIC, GTK, Qt (qt5ct/qt6ct), bat,
+btop, font, icon, theme, neofetch, and wallpaper paths under the current
+user's home directory. It writes a root-owned archive and manifests under
+`/var/backups/pop-os-rice/`, then verifies the SHA-256 checksum, gzip stream,
+and tar index. It also captures the legacy interface dconf state used for
+icon-theme selection.
 
 ## 3. Preview the profile
 
@@ -243,10 +244,21 @@ the complete upstream rice, with wallpapers in `backgrounds/`, cursors, and
 themes for Firefox, Brave, terminals, shells, editors, and other apps. Follow
 its `README.md` to install individual parts.
 
+Their installers are not run by `apply.sh`, so take a checkpoint first:
+
+```bash
+./scripts/backup.sh --label before-rice-apps
+```
+
+The checkpoint covers the bat, btop, qt5ct/qt6ct, and GTK configuration those
+installers change. Restoring it puts captured files back but does not delete
+files created afterward; remove those by hand, such as `~/.config/bat/` when
+it did not exist before. The installers' own `*.bak` copies hold only the
+previous version and are overwritten on every rerun.
+
 `vendor/cosmic-<name>-theme/scripts/switch.sh` installs all of them at once.
-It edits `~/.zshrc`, Neovim plugin specs, the Firefox profile, btop, and
-`~/update_system.sh`, which `backup.sh` does not capture. It writes `*.bak`
-copies of the files it replaces; `restore.sh` does not restore them.
+It also edits `~/.zshrc`, Neovim plugin specs, the Firefox profile, and
+`~/update_system.sh`, which `backup.sh` does not capture.
 
 ## Verification
 
