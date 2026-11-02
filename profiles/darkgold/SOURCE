@@ -1,0 +1,5 @@
+name=DarkGold
+mode=dark
+pair=whitegold
+upstream=https://github.com/atraxsrc/cosmic-darkgold-theme
+commit=f21899183cab3b21d4d5c61357744defc45ac623

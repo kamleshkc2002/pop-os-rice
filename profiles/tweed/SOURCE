@@ -1,0 +1,5 @@
+name=Tweed
+mode=dark
+pair=tweedday
+upstream=https://github.com/atraxsrc/cosmic-tweed-theme
+commit=33453191b6d4776230d6badda1f8b98517184204

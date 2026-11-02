@@ -1,0 +1,5 @@
+name=K3
+mode=dark
+pair=k3day
+upstream=https://github.com/atraxsrc/cosmic-k3-theme
+commit=e8e628df7d96eb68c18c49f0a39a0d4a8fd64be8

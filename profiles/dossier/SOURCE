@@ -1,0 +1,5 @@
+name=Dossier
+mode=light
+pair=noir
+upstream=https://github.com/atraxsrc/cosmic-dossier-theme
+commit=e8bf8c760f108aedd4e50c10d0ae972441a9b8eb

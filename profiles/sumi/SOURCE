@@ -1,0 +1,5 @@
+name=Sumi
+mode=dark
+pair=sumiday
+upstream=https://github.com/atraxsrc/cosmic-sumi-theme
+commit=f9a9dc12c912e7bf4f8fd7819238dd1db0c16a37

@@ -1,0 +1,5 @@
+name=Monochrome Day
+mode=light
+pair=monochrome
+upstream=https://github.com/atraxsrc/cosmic-monochromeday-theme
+commit=29fca75d4db0c430221d1ded9651fc6d12f9bd74

@@ -1,0 +1,5 @@
+name=Ember
+mode=dark
+pair=emberday
+upstream=https://github.com/atraxsrc/cosmic-ember-theme
+commit=84e2f3754f0067e3b2dd8100494eb25e11749032

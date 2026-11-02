@@ -1,0 +1,5 @@
+name=Brass Day
+mode=light
+pair=brass
+upstream=https://github.com/atraxsrc/cosmic-brassday-theme
+commit=19eb833ef98b9830fd7679cb2aab406e4f07a017

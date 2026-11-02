@@ -14,12 +14,55 @@ Both profiles change only file-backed settings (COSMIC, plus neofetch for
 imports. Neither profile modifies Warp or ships wallpaper, font, or cursor
 assets.
 
+### cosmic-rices profiles
+
+The 14 dark/light pairs from [cosmic-rices](https://atraxsrc.github.io/cosmic-rices/)
+by atraxsrc are available as profiles, one per half:
+
+| Dark | Light |
+|---|---|
+| `blushnight` | `blush` |
+| `brass` | `brassday` |
+| `cinder` | `cinderday` |
+| `darkgold` | `whitegold` |
+| `ember` | `emberday` |
+| `k3` | `k3day` |
+| `monochrome` | `monochromeday` |
+| `nebula` | `nebuladay` |
+| `noir` | `dossier` |
+| `prism` | `prismday` |
+| `sorbet` | `sorbetday` |
+| `sumi` | `sumiday` |
+| `tokyonight` | `tokyoday` |
+| `tweed` | `tweedday` |
+
+Each profile carries the rice's COSMIC layer only:
+
+- `theme`: the desktop palette, the Maple Mono interface and monospace fonts,
+  hidden minimize/maximize buttons, and the theme applied to GNOME apps
+- `terminal`: COSMIC Terminal font, weights, opacity, header bar, the selected
+  color scheme, and every color scheme the rice ships; the terminal follows the
+  desktop's Dark/Light mode instead of the forced Dark that `sakura-night` and
+  `neon-glass` set
+- `icons`: the rice's `Cosmic-<Name>-<Color>` icon pack
+
+They leave the panel and dock untouched. Fonts and the icon pack must be
+installed first; see [`docs/SETUP.md`](docs/SETUP.md#cosmic-rices-prerequisites).
+
+Importing a palette switches COSMIC to that palette's mode, so applying a dark
+profile's `theme` and then its light pair's `theme` fills both slots and the
+Dark/Light toggle flips between them.
+
+The full upstream rices, with wallpapers, cursors, and themes for terminals,
+shells, editors, and browsers, are git submodules under `vendor/`; see
+[`docs/SETUP.md`](docs/SETUP.md#cosmic-rices-app-themes-and-wallpapers).
+
 See [`docs/SETUP.md`](docs/SETUP.md) for the complete installation,
 verification, and rollback workflow.
 
 ## Repository layout
 
-- `scripts/`: backup, restore, and profile application commands
+- `scripts/`: backup, restore, profile application, and rice import commands
 - `profiles/<name>/theme/`: COSMIC desktop palette import (`<name>.ron`) and
   toolkit settings
 - `profiles/<name>/panel/`: panel and dock settings
@@ -27,9 +70,26 @@ verification, and rollback workflow.
 - `profiles/<name>/terminal/`: COSMIC Terminal settings and palettes
 - `profiles/<name>/icons/`: icon theme selection
 - `profiles/<name>/fetch/`: neofetch layout
+- `profiles/<name>/SOURCE`, `LICENSE`: upstream repository, commit, and
+  license of a generated cosmic-rices profile
+- `vendor/cosmic-<name>-theme/`: upstream cosmic-rices repositories (git
+  submodules)
 - `assets/`: licensed visual assets and their provenance
 
 A profile provides only the categories it needs.
+
+## Update the cosmic-rices profiles
+
+Generated profiles are rebuilt from the submodules; do not edit them by hand.
+
+```bash
+git submodule update --init --remote
+./scripts/import-rices.sh
+```
+
+`import-rices.sh` regenerates every `profiles/<name>/` that has a `SOURCE`
+file, removes generated profiles whose submodule is gone, and refuses to
+replace hand-made profiles such as `sakura-night` and `neon-glass`.
 
 ## Safety checkpoints
 
@@ -105,10 +165,16 @@ the session supervisor does not restart it.
 
 ## Import the terminal palette
 
-`sakura-night` only. Open COSMIC Terminal, go to **View → Color schemes**,
+`sakura-night`: open COSMIC Terminal, go to **View → Color schemes**,
 choose **Import**, and select
 `profiles/sakura-night/terminal/sakura-night.ron`. Then select
 **Sakura Night** as the dark color scheme.
+
+cosmic-rices profiles: import the main scheme in `profiles/<name>/terminal/`
+(`Noir-term.ron`, `Monochrome-Dark-term.ron`, …: the one without a variant
+suffix) on the **Dark** or **Light** tab matching the profile's mode. The
+profile already selects it; the other `.ron` files are dimmer variants with
+the same ANSI colors.
 
 `neon-glass` selects the built-in **COSMIC Dark** scheme automatically.
 

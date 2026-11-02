@@ -1,0 +1,5 @@
+name=Sorbet Day
+mode=light
+pair=sorbet
+upstream=https://github.com/atraxsrc/cosmic-sorbetday-theme
+commit=da430159a4365a374d417229db3b4246e93d48fd

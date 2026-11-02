@@ -1,0 +1,5 @@
+name=TweedDay
+mode=light
+pair=tweed
+upstream=https://github.com/atraxsrc/cosmic-tweedday-theme
+commit=a54f07c150e57fbbb0fee86bb9988609a2d34e6c
