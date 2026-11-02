@@ -10,6 +10,7 @@ ROOT="$(project_root)"
 mode=""
 profile="sakura-night"
 category="all"
+icon_theme=""
 readonly CATEGORIES=(theme panel applets terminal icons fetch)
 
 usage() {
@@ -49,9 +50,10 @@ category_destination() {
   esac
 }
 
-apply_icons() {
+# Validated before anything is applied, so a missing icon pack cannot leave a
+# profile half-applied.
+resolve_icon_theme() {
   local icon_theme_file="${PROFILE_ROOT}/icons/icon-theme"
-  local icon_theme
   require_command gsettings
 
   [[ -f "$icon_theme_file" ]] || die "icon profile missing: $icon_theme_file"
@@ -60,7 +62,9 @@ apply_icons() {
      -d "${HOME}/.local/share/icons/${icon_theme}" ||
      -d "${HOME}/.icons/${icon_theme}" ]] \
     || die "icon theme is not installed: $icon_theme"
+}
 
+apply_icons() {
   if [[ "$mode" == "dry-run" ]]; then
     printf 'would set org.gnome.desktop.interface icon-theme -> %s\n' \
       "$icon_theme"
@@ -169,6 +173,10 @@ else
   [[ -d "${PROFILE_ROOT}/${category}" ]] \
     || die "profile ${profile} has no ${category} category"
   categories=("$category")
+fi
+
+if [[ " ${categories[*]} " == *" icons "* ]]; then
+  resolve_icon_theme
 fi
 
 if [[ "$mode" == "apply" ]]; then

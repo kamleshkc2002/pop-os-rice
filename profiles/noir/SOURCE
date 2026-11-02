@@ -1,0 +1,5 @@
+name=Noir
+mode=dark
+pair=dossier
+upstream=https://github.com/atraxsrc/cosmic-noir-theme
+commit=887444bed4750efc540fdc8afed1cf81eb6fe118

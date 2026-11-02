@@ -1,0 +1,5 @@
+name=Prism
+mode=dark
+pair=prismday
+upstream=https://github.com/atraxsrc/cosmic-prism-theme
+commit=7ed6494cfddac1fe7c853e0890ba27c6b141058c

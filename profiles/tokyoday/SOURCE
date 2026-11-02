@@ -1,0 +1,5 @@
+name=Tokyo Day
+mode=light
+pair=tokyonight
+upstream=https://github.com/atraxsrc/cosmic-tokyoday-theme
+commit=b39422001c964f80d714d6eeb00ca55aa19edf4f

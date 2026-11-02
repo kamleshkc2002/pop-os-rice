@@ -1,0 +1,112 @@
+[submodule "vendor/cosmic-blushnight-theme"]
+	path = vendor/cosmic-blushnight-theme
+	url = https://github.com/atraxsrc/cosmic-blushnight-theme
+	shallow = true
+[submodule "vendor/cosmic-blush-theme"]
+	path = vendor/cosmic-blush-theme
+	url = https://github.com/atraxsrc/cosmic-blush-theme
+	shallow = true
+[submodule "vendor/cosmic-brassday-theme"]
+	path = vendor/cosmic-brassday-theme
+	url = https://github.com/atraxsrc/cosmic-brassday-theme
+	shallow = true
+[submodule "vendor/cosmic-brass-theme"]
+	path = vendor/cosmic-brass-theme
+	url = https://github.com/atraxsrc/cosmic-brass-theme
+	shallow = true
+[submodule "vendor/cosmic-cinderday-theme"]
+	path = vendor/cosmic-cinderday-theme
+	url = https://github.com/atraxsrc/cosmic-cinderday-theme
+	shallow = true
+[submodule "vendor/cosmic-cinder-theme"]
+	path = vendor/cosmic-cinder-theme
+	url = https://github.com/atraxsrc/cosmic-cinder-theme
+	shallow = true
+[submodule "vendor/cosmic-darkgold-theme"]
+	path = vendor/cosmic-darkgold-theme
+	url = https://github.com/atraxsrc/cosmic-darkgold-theme
+	shallow = true
+[submodule "vendor/cosmic-dossier-theme"]
+	path = vendor/cosmic-dossier-theme
+	url = https://github.com/atraxsrc/cosmic-dossier-theme
+	shallow = true
+[submodule "vendor/cosmic-emberday-theme"]
+	path = vendor/cosmic-emberday-theme
+	url = https://github.com/atraxsrc/cosmic-emberday-theme
+	shallow = true
+[submodule "vendor/cosmic-ember-theme"]
+	path = vendor/cosmic-ember-theme
+	url = https://github.com/atraxsrc/cosmic-ember-theme
+	shallow = true
+[submodule "vendor/cosmic-k3day-theme"]
+	path = vendor/cosmic-k3day-theme
+	url = https://github.com/atraxsrc/cosmic-k3day-theme
+	shallow = true
+[submodule "vendor/cosmic-k3-theme"]
+	path = vendor/cosmic-k3-theme
+	url = https://github.com/atraxsrc/cosmic-k3-theme
+	shallow = true
+[submodule "vendor/cosmic-monochromeday-theme"]
+	path = vendor/cosmic-monochromeday-theme
+	url = https://github.com/atraxsrc/cosmic-monochromeday-theme
+	shallow = true
+[submodule "vendor/cosmic-monochrome-theme"]
+	path = vendor/cosmic-monochrome-theme
+	url = https://github.com/atraxsrc/cosmic-monochrome-theme
+	shallow = true
+[submodule "vendor/cosmic-nebuladay-theme"]
+	path = vendor/cosmic-nebuladay-theme
+	url = https://github.com/atraxsrc/cosmic-nebuladay-theme
+	shallow = true
+[submodule "vendor/cosmic-nebula-theme"]
+	path = vendor/cosmic-nebula-theme
+	url = https://github.com/atraxsrc/cosmic-nebula-theme
+	shallow = true
+[submodule "vendor/cosmic-noir-theme"]
+	path = vendor/cosmic-noir-theme
+	url = https://github.com/atraxsrc/cosmic-noir-theme
+	shallow = true
+[submodule "vendor/cosmic-prismday-theme"]
+	path = vendor/cosmic-prismday-theme
+	url = https://github.com/atraxsrc/cosmic-prismday-theme
+	shallow = true
+[submodule "vendor/cosmic-prism-theme"]
+	path = vendor/cosmic-prism-theme
+	url = https://github.com/atraxsrc/cosmic-prism-theme
+	shallow = true
+[submodule "vendor/cosmic-sorbetday-theme"]
+	path = vendor/cosmic-sorbetday-theme
+	url = https://github.com/atraxsrc/cosmic-sorbetday-theme
+	shallow = true
+[submodule "vendor/cosmic-sorbet-theme"]
+	path = vendor/cosmic-sorbet-theme
+	url = https://github.com/atraxsrc/cosmic-sorbet-theme
+	shallow = true
+[submodule "vendor/cosmic-sumiday-theme"]
+	path = vendor/cosmic-sumiday-theme
+	url = https://github.com/atraxsrc/cosmic-sumiday-theme
+	shallow = true
+[submodule "vendor/cosmic-sumi-theme"]
+	path = vendor/cosmic-sumi-theme
+	url = https://github.com/atraxsrc/cosmic-sumi-theme
+	shallow = true
+[submodule "vendor/cosmic-tokyoday-theme"]
+	path = vendor/cosmic-tokyoday-theme
+	url = https://github.com/atraxsrc/cosmic-tokyoday-theme
+	shallow = true
+[submodule "vendor/cosmic-tokyonight-theme"]
+	path = vendor/cosmic-tokyonight-theme
+	url = https://github.com/atraxsrc/cosmic-tokyonight-theme
+	shallow = true
+[submodule "vendor/cosmic-tweedday-theme"]
+	path = vendor/cosmic-tweedday-theme
+	url = https://github.com/atraxsrc/cosmic-tweedday-theme
+	shallow = true
+[submodule "vendor/cosmic-tweed-theme"]
+	path = vendor/cosmic-tweed-theme
+	url = https://github.com/atraxsrc/cosmic-tweed-theme
+	shallow = true
+[submodule "vendor/cosmic-whitegold-theme"]
+	path = vendor/cosmic-whitegold-theme
+	url = https://github.com/atraxsrc/cosmic-whitegold-theme
+	shallow = true

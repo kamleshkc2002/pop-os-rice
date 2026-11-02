@@ -1,0 +1,5 @@
+name=Cinder Day
+mode=light
+pair=cinder
+upstream=https://github.com/atraxsrc/cosmic-cinderday-theme
+commit=09576e27891bb3b3d25c2a238b4a2d096e7e4e31

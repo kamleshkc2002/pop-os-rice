@@ -1,0 +1,5 @@
+name=Blush
+mode=light
+pair=blushnight
+upstream=https://github.com/atraxsrc/cosmic-blush-theme
+commit=361a47fe161c526c48dd649cea7e305ba67e8e35

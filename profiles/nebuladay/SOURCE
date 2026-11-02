@@ -1,0 +1,5 @@
+name=NebulaDay
+mode=light
+pair=nebula
+upstream=https://github.com/atraxsrc/cosmic-nebuladay-theme
+commit=31314e1eb2f923986fece5551b059bb3c3d8b270
